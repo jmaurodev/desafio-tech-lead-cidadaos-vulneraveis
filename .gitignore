@@ -1,0 +1,23 @@
+# Claude Code local settings (específico por dev)
+.claude/
+
+# Data
+data/
+
+# Backend
+backend/.venv/
+*.pyc
+
+# Frontend
+frontend/node_modules/
+
+# dbt artifacts
+pipeline/target/
+pipeline/dbt_packages/
+pipeline/logs/
+
+# dbt local profile (contém path absoluto da máquina)
+pipeline/profiles.yml
+
+# dbt telemetry ID (gerado localmente, específico por máquina)
+pipeline/.user.yml

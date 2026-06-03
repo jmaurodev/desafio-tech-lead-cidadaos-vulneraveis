@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: main
+    tables:
+      - name: raw_bairro
+        description: "Bairros do município do Rio de Janeiro com geometrias."
+
+      - name: raw_area_planejamento
+        description: "Áreas de planejamento com geometrias."
+
+      - name: raw_regiao_administrativa
+        description: "Regiões administrativas com geometrias."
+
+      - name: raw_subprefeitura
+        description: "Subprefeituras com geometrias."

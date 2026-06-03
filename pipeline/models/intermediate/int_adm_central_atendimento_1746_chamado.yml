@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: int_adm_central_atendimento_1746_chamado
+    description: "Chamados com campos calculados: duração em dias, flag de cumprimento de prazo e ano-mês."
+    columns:
+      - name: id_chamado
+        description: "Identificador único do chamado."
+        tests:
+          - not_null
+          - unique
+      - name: duracao_dias
+        description: "Dias entre data_inicio e data_fim (ou hoje, para chamados em aberto)."
+      - name: no_prazo
+        description: "True se encerrado dentro do prazo, false se atrasado, null se ainda em aberto."
+      - name: ano_mes
+        description: "Ano-mês de abertura no formato YYYY-MM, para agregações temporais."
+        tests:
+          - not_null

@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_geo_subprefeitura
+    description: "Subprefeituras do Rio com geometria WKT."
+    columns:
+      - name: subprefeitura
+        description: "Nome da subprefeitura (PK natural)."
+        tests:
+          - not_null
+          - unique
+      - name: geometry_wkt
+        description: "Polígono da subprefeitura em formato WKT."

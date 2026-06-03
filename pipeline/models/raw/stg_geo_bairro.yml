@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_geo_bairro
+    description: "Bairros do município do Rio com hierarquia geográfica e geometria WKT."
+    columns:
+      - name: id_bairro
+        description: "Identificador único do bairro."
+        tests:
+          - not_null
+          - unique
+      - name: nome
+        description: "Nome do bairro."
+        tests:
+          - not_null
+      - name: id_regiao_administrativa
+        description: "FK para regiao_administrativa."
+      - name: geometry_wkt
+        description: "Polígono do bairro em formato WKT."

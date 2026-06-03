@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_geo_area_planejamento
+    description: "Áreas de planejamento do Rio com geometria WKT."
+    columns:
+      - name: id_area_planejamento
+        description: "Identificador único da área de planejamento."
+        tests:
+          - not_null
+          - unique
+      - name: geometry_wkt
+        description: "Polígono da área em formato WKT."

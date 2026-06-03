@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_adm_central_atendimento_1746_chamado
+    description: "Chamados 1746 com tipos normalizados (lowercase/trim) e colunas tipadas."
+    columns:
+      - name: id_chamado
+        description: "Identificador único do chamado."
+        tests:
+          - not_null
+          - unique
+      - name: data_inicio
+        description: "Data e hora de abertura do chamado."
+        tests:
+          - not_null
+      - name: data_fim
+        description: "Data e hora de encerramento. Pode ser nulo para chamados em aberto."
+      - name: data_alvo_finalizacao
+        description: "Prazo máximo para atendimento conforme SLA."
+      - name: prazo_tipo
+        description: "Tipo do prazo normalizado (ex: f = fixo)."
+      - name: prazo_unidade
+        description: "Unidade do prazo normalizado (ex: d = dias)."
+      - name: tipo
+        description: "Código numérico do tipo do chamado. Nullable — chamados de Cadastro Único (SMAS) não possuem tipo."
+      - name: subtipo
+        description: "Subtipo normalizado (lowercase)."
+      - name: status
+        description: "Status normalizado (lowercase)."
+        tests:
+          - not_null
+      - name: situacao
+        description: "Situação normalizada (lowercase)."
+      - name: longitude
+        description: "Longitude da ocorrência."
+      - name: latitude
+        description: "Latitude da ocorrência."
+      - name: data_particao
+        description: "Data de partição."
+        tests:
+          - not_null

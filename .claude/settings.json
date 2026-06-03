@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv remove *)",
+      "Bash(uv add *)",
+      "Bash(.venv/bin/pytest -v)",
+      "Bash(pnpm create *)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm dlx *)",
+      "Bash(pnpm tsc *)",
+      "Bash(pnpm build *)",
+      "Bash(curl -s http://localhost:8000/health)",
+      "Bash(uv run *)",
+      "Read(//private/tmp/**)",
+      "Bash(node verify_frontend.mjs)",
+      "Read(//tmp/screenshots/**)",
+      "Read(//private/tmp/screenshots/**)"
+    ]
+  }
+}

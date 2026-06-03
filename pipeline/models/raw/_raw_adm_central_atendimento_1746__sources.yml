@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Tabelas brutas carregadas via scripts/load_raw.py a partir dos CSVs em data/."
+    schema: main
+    tables:
+      - name: raw_chamados
+        description: "Chamados do 1746 (Central de Atendimento do Rio), todos os registros desde 2023."
+        columns:
+          - name: id_chamado
+            description: "Identificador único do chamado."
+          - name: data_inicio
+            description: "Data e hora de abertura do chamado."
+          - name: data_fim
+            description: "Data e hora de encerramento. Vazio para chamados em aberto."
+          - name: data_alvo_finalizacao
+            description: "Prazo máximo para atendimento conforme SLA."
+          - name: prazo_tipo
+            description: "Tipo do prazo (ex: F = fixo)."
+          - name: prazo_unidade
+            description: "Unidade do prazo (ex: D = dias)."
+          - name: tipo
+            description: "Código numérico do tipo do chamado."
+          - name: subtipo
+            description: "Subtipo do chamado (categoria secundária)."
+          - name: status
+            description: "Status atual do chamado."
+          - name: situacao
+            description: "Situação detalhada do chamado."
+          - name: longitude
+            description: "Longitude da ocorrência."
+          - name: latitude
+            description: "Latitude da ocorrência."
+          - name: data_particao
+            description: "Data de partição original do BigQuery."

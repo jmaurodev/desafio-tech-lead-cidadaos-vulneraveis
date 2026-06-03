@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_geo_regiao_administrativa
+    description: "Regiões administrativas do Rio com geometria WKT."
+    columns:
+      - name: id_regiao_administrativa
+        description: "Identificador único da região administrativa."
+        tests:
+          - not_null
+          - unique
+      - name: nome
+        description: "Nome da região administrativa."
+        tests:
+          - not_null
+      - name: geometry_wkt
+        description: "Polígono da região em formato WKT."

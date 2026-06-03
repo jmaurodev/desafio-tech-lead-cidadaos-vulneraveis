@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: fct_adm_central_atendimento_1746_chamado
+    description: "Tabela de fatos com todos os chamados 1746 desde 2023, incluindo métricas calculadas. Consumida diretamente pela API."
+    columns:
+      - name: id_chamado
+        description: "Identificador único do chamado."
+        tests:
+          - not_null
+          - unique
+      - name: tipo
+        description: "Código numérico do tipo do chamado. Nullable — chamados de Cadastro Único (SMAS) não possuem tipo."
+      - name: status
+        description: "Status normalizado (lowercase)."
+        tests:
+          - not_null
+      - name: data_alvo_finalizacao
+        description: "Prazo máximo para atendimento conforme SLA."
+      - name: prazo_tipo
+        description: "Tipo do prazo (ex: f = fixo)."
+      - name: prazo_unidade
+        description: "Unidade do prazo (ex: d = dias)."
+      - name: duracao_dias
+        description: "Duração em dias (encerrado ou em andamento)."
+      - name: no_prazo
+        description: "Cumprimento de SLA: true/false/null."
+      - name: ano_mes
+        description: "Ano-mês YYYY-MM para agrupamentos no dashboard."

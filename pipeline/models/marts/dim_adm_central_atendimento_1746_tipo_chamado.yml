@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_adm_central_atendimento_1746_tipo_chamado
+    description: "Dimensão de tipos e subtipos únicos de chamados, para uso em filtros de UI."
+    columns:
+      - name: id_tipo_chamado
+        description: "Chave surrogate MD5 gerada de tipo+subtipo."
+        tests:
+          - not_null
+          - unique
+      - name: tipo
+        description: "Código numérico do tipo do chamado."
+        tests:
+          - not_null
+      - name: subtipo
+        description: "Subtipo do chamado."
