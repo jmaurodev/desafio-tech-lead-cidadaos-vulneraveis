@@ -38,3 +38,27 @@ def test_dashboard_por_secretaria(client, operador_token):
     secretarias = {s["secretaria"] for s in por_sec}
     assert "SMTR" in secretarias
     assert "SEOP" in secretarias
+
+
+def test_dashboard_expoe_dominio_de_meses(client, operador_token):
+    body = client.get("/dashboard", headers=auth(operador_token)).json()
+    assert body["mes_min"] == "2024-01"
+    assert body["mes_max"] == "2024-03"
+
+
+def test_dashboard_filtro_por_mes_recorta_dados(client, operador_token):
+    resp = client.get(
+        "/dashboard?mes_inicio=2024-01&mes_fim=2024-01", headers=auth(operador_token)
+    )
+    body = resp.json()
+    # Só o chamado de janeiro entra
+    assert body["kpi"]["total_chamados"] == 1
+    assert body["kpi"]["total_encerrados"] == 1
+    assert len(body["por_mes"]) == 1
+    assert body["por_mes"][0]["ano_mes"] == "2024-01"
+    # mes_min/mes_max refletem o domínio completo, não o filtro
+    assert body["mes_min"] == "2024-01"
+    assert body["mes_max"] == "2024-03"
+    # secretaria só SMTR no recorte de janeiro
+    secretarias = {s["secretaria"] for s in body["por_secretaria"]}
+    assert secretarias == {"SMTR"}

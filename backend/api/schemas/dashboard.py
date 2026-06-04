@@ -17,3 +17,5 @@ class DashboardResponse(BaseModel):
     kpi: KpiGeral
     por_mes: list[dict]
     por_secretaria: list[dict]
+    mes_min: str | None
+    mes_max: str | None

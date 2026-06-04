@@ -93,7 +93,13 @@ Os testes **não dependem do DuckDB** — o cache é substituído por DataFrames
 |---|---|---|
 | `GET` | `/dashboard` | KPIs gerais + série mensal + breakdown por secretaria |
 
-Os dados vêm de tabelas mart pré-agregadas pelo dbt (`mart_kpi_geral`, `mart_kpi_mensal`, `mart_kpi_secretaria`) e são servidos direto do cache — sem recálculo.
+O dbt pré-agrega no grão fino `(mês × secretaria)` no mart
+`mart_adm_central_atendimento_1746_kpi_mensal_secretaria` (medidas aditivas). A
+API só faz um **rollup** dessa tabela pequena (carregada no cache) para a janela
+escolhida — sem varrer o fato por request. Isso permite o recorte por janela de
+meses (`?mes_inicio=YYYY-MM&mes_fim=YYYY-MM`), que afeta KPIs, série mensal e
+breakdown por secretaria de uma vez. Ver `api/aggregations.py` e `docs/decisoes.md`
+(Opção A vs B).
 
 ### Tipos
 
@@ -106,8 +112,8 @@ Os dados vêm de tabelas mart pré-agregadas pelo dbt (`mart_kpi_geral`, `mart_k
 | Método | Path | Role mínimo | Descrição |
 |---|---|---|---|
 | `GET` | `/users` | admin | Lista usuários |
-| `POST` | `/users` | admin | Cria usuário (role ≤ próprio) |
-| `PUT` | `/users/{id}/role` | admin | Altera role (role-alvo ≤ próprio, role-atual-do-target < próprio) |
+| `POST` | `/users` | admin | Cria usuário (role < próprio) |
+| `PATCH` | `/users/{id}/role` | admin | Altera role (role-alvo < próprio, role-atual-do-target < próprio) |
 | `DELETE` | `/users/{id}` | admin | Remove usuário (role < próprio) |
 
 ## Autenticação

@@ -1,8 +1,9 @@
 # Claude Code local settings (específico por dev)
 .claude/
 
-# Data
-data/
+# Data — CSVs e DuckDB não sobem; só o README de especificação
+data/*
+!data/README.md
 
 # Backend
 backend/.venv/

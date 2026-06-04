@@ -50,42 +50,28 @@ _CHAMADOS = pl.DataFrame(
     }
 )
 
-_KPI_GERAL = pl.DataFrame(
-    {
-        "total_chamados": [3],
-        "total_encerrados": [2],
-        "total_no_prazo": [2],
-        "total_fora_prazo": [0],
-        "total_em_andamento": [1],
-        "tempo_medio_resolucao_dias": [5.0],
-        "taxa_resolucao_prazo": [100.0],
-        "data_mais_antiga": [datetime(2024, 1, 10)],
-        "data_mais_recente": [datetime(2024, 3, 20)],
-    }
-)
-
-_KPI_MENSAL = pl.DataFrame(
+# Grão fino (mês × secretaria) coerente com _CHAMADOS — fonte do dashboard.
+# SEOP em 2024-02 não tem encerrados, logo soma_duracao_encerrados é nulo.
+_KPI_MENSAL_SECRETARIA = pl.DataFrame(
     {
         "ano_mes": ["2024-01", "2024-02", "2024-03"],
+        "secretaria": ["SMTR", "SEOP", "SMTR"],
         "total_chamados": [1, 1, 1],
         "total_encerrados": [1, 0, 1],
         "total_no_prazo": [1, 0, 1],
         "total_fora_prazo": [0, 0, 0],
         "total_em_andamento": [0, 1, 0],
-        "tempo_medio_resolucao_dias": [5.0, None, 5.0],
-        "taxa_resolucao_prazo": [100.0, None, 100.0],
-    }
-)
-
-_KPI_SECRETARIA = pl.DataFrame(
-    {
-        "secretaria": ["SMTR", "SEOP"],
-        "total_chamados": [2, 1],
-        "total_encerrados": [2, 0],
-        "total_no_prazo": [2, 0],
-        "total_fora_prazo": [0, 0],
-        "tempo_medio_resolucao_dias": [5.0, None],
-        "taxa_resolucao_prazo": [100.0, None],
+        "soma_duracao_encerrados": [5, None, 5],
+        "data_mais_antiga": [
+            datetime(2024, 1, 10),
+            datetime(2024, 2, 5),
+            datetime(2024, 3, 20),
+        ],
+        "data_mais_recente": [
+            datetime(2024, 1, 10),
+            datetime(2024, 2, 5),
+            datetime(2024, 3, 20),
+        ],
     }
 )
 
@@ -111,9 +97,7 @@ def patch_cache(monkeypatch):
     monkeypatch.setattr(cache_module, "startup", lambda: None)
 
     cache_module._store["chamados"] = _CHAMADOS
-    cache_module._store["kpi_geral"] = _KPI_GERAL
-    cache_module._store["kpi_mensal"] = _KPI_MENSAL
-    cache_module._store["kpi_secretaria"] = _KPI_SECRETARIA
+    cache_module._store["kpi_mensal_secretaria"] = _KPI_MENSAL_SECRETARIA
     cache_module._store["tipos"] = _TIPOS
     yield
 

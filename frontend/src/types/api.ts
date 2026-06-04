@@ -115,6 +115,13 @@ export interface DashboardResponse {
   kpi: KpiGeral
   por_mes: KpiMensal[]
   por_secretaria: KpiSecretaria[]
+  mes_min: string | null
+  mes_max: string | null
+}
+
+export interface DashboardFilters {
+  mes_inicio?: string
+  mes_fim?: string
 }
 
 export type TiposMap = Record<string, string[]>
