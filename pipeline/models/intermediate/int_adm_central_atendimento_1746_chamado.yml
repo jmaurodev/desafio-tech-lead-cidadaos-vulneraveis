@@ -9,6 +9,14 @@ models:
         tests:
           - not_null
           - unique
+      - name: id_bairro
+        description: "Identificador do bairro da ocorrência."
+      - name: nome_bairro
+        description: "Nome do bairro da ocorrência."
+      - name: nome_subprefeitura
+        description: "Subprefeitura responsável pelo bairro."
+      - name: nome_regiao_administrativa
+        description: "Região administrativa do bairro."
       - name: duracao_dias
         description: "Dias entre data_inicio e data_fim (ou hoje, para chamados em aberto)."
       - name: no_prazo

@@ -31,6 +31,8 @@ models:
           - not_null
       - name: situacao
         description: "Situação normalizada (lowercase)."
+      - name: id_bairro
+        description: "Identificador do bairro da ocorrência."
       - name: longitude
         description: "Longitude da ocorrência."
       - name: latitude

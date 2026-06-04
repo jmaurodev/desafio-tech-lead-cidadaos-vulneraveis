@@ -14,6 +14,7 @@ select
     trim(lower(subtipo::varchar))::varchar       as subtipo,
     trim(lower(status::varchar))::varchar        as status,
     trim(lower(situacao::varchar))::varchar      as situacao,
+    id_bairro::varchar                           as id_bairro,
     longitude::double                            as longitude,
     latitude::double                             as latitude,
     data_particao::date                          as data_particao

@@ -15,6 +15,14 @@ models:
         description: "Status normalizado (lowercase)."
         tests:
           - not_null
+      - name: id_bairro
+        description: "Identificador do bairro da ocorrência."
+      - name: nome_bairro
+        description: "Nome do bairro da ocorrência."
+      - name: nome_subprefeitura
+        description: "Subprefeitura responsável pelo bairro."
+      - name: nome_regiao_administrativa
+        description: "Região administrativa do bairro."
       - name: data_alvo_finalizacao
         description: "Prazo máximo para atendimento conforme SLA."
       - name: prazo_tipo
