@@ -12,7 +12,17 @@ models:
       - name: tipo
         description: "Código numérico do tipo do chamado. Nullable — chamados de Cadastro Único (SMAS) não possuem tipo."
       - name: status
-        description: "Status normalizado (lowercase)."
+        description: "Status normalizado (lowercase). Bruto — não usar para determinar encerramento (ver encerrado)."
+        tests:
+          - not_null
+      - name: situacao
+        description: "Situação normalizada (lowercase). Bruta — não usar para determinar encerramento (ver encerrado)."
+      - name: encerrado
+        description: "Indicador de encerramento derivado de data_fim (limpeza 1). Fonte da verdade para aberto/encerrado."
+        tests:
+          - not_null
+      - name: secretaria
+        description: "Secretaria/órgão responsável, derivado de subtipo por palavra-chave (limpeza 2). 'indefinido' para a cauda longa (~2%)."
         tests:
           - not_null
       - name: id_bairro

@@ -17,6 +17,14 @@ models:
         description: "Subprefeitura responsável pelo bairro."
       - name: nome_regiao_administrativa
         description: "Região administrativa do bairro."
+      - name: encerrado
+        description: "Indicador de encerramento derivado de data_fim (fonte da verdade — limpeza 1). True quando data_fim não é nulo."
+        tests:
+          - not_null
+      - name: secretaria
+        description: "Secretaria/órgão responsável, derivado de subtipo por palavra-chave (limpeza 2). 'indefinido' para a cauda longa não classificada (~2%)."
+        tests:
+          - not_null
       - name: duracao_dias
         description: "Dias entre data_inicio e data_fim (ou hoje, para chamados em aberto)."
       - name: no_prazo
